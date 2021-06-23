@@ -16,7 +16,7 @@ class Product extends Model
      */
     protected $fillable = [
         'name',
-        'amount',
+        'slot',
         'description',
         'price',
     ];
@@ -28,8 +28,13 @@ class Product extends Model
      */
     protected $casts = [
         'name' => 'string',
-        'amount' => 'integer',
+        'slot' => 'integer',
         'description' => 'string',
         'price' => 'integer',
     ];
+
+    public function orders()
+    {
+        return $this->belongsTo(Order::class, 'product_id');
+    }
 }

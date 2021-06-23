@@ -43,4 +43,9 @@ class User extends Authenticatable
         'email' => 'string',
         'role' => 'integer',
     ];
+
+    public function orders()
+    {
+        return $this->belongsTo(Order::class, 'product_id');
+    }
 }
