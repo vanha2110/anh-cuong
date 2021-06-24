@@ -9,12 +9,18 @@
                 </h1>
             </div>
             <div>
-                <div class="pricing-table-cta mb-8" style="float: left; padding-right: 10px">
-                    <a class="button button-primary button-shadow button-block" href="{{ route('login') }}">Login</a>
-                </div>
-                <div class="pricing-table-cta mb-8" style="float: right">
-                    <a class="button button-primary button-shadow button-block" href="{{ route('register') }}">Register</a>
-                </div>
+                @if(auth()->check())
+                    <div class="pricing-table-cta mb-8">
+                        <a class="button button-primary button-shadow button-block" href="{{ route('dashboard') }}">Dashboard</a>
+                    </div>
+                @else
+                    <div class="pricing-table-cta mb-8" style="float: left; padding-right: 10px">
+                        <a class="button button-primary button-shadow button-block" href="{{ route('login') }}">Login</a>
+                    </div>
+                    <div class="pricing-table-cta mb-8" style="float: right">
+                        <a class="button button-primary button-shadow button-block" href="{{ route('register') }}">Register</a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
