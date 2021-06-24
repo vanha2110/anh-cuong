@@ -1,4 +1,6 @@
-@extends('user.layouts.app')
+@extends('user.layouts.app', ['current' => 'product'])
+
+@section('title', 'Product')
 
 @section('content')
     <div class="container-fluid">
@@ -29,8 +31,12 @@
                                             <td class="text-primary">{{ $product->price }}</td>
                                             <td>{{ $product->description }}</td>
                                             <td>
-                                                <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                                <a href="{{ route('admin.product.delete', $product->id) }}" class="btn btn-da\ btn-sm">Delete</a>
+                                                <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-primary btn-sm" style="float: left">Edit</a>
+                                                <form method="post" action="{{ route('admin.product.delete', $product->id) }}">
+                                                    @csrf
+                                                    <a href="{{ route('admin.product.delete', $product->id) }}" class="btn btn-da\ btn-sm" style="float: right" onclick="event.preventDefault();
+                                        this.closest('form').submit();">Delete</a>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

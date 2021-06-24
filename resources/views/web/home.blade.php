@@ -109,7 +109,14 @@
                                 @if($product->slot == 0)
                                     <button class="button button-primary button-shadow button-block" disabled>Sold out</button>
                                 @else
-                                    <a class="button button-primary button-shadow button-block" href="#">Pre order now</a>
+                                    <form method="POST" action="{{ route('order.store') }}">
+                                        @csrf
+                                        <input hidden id="product_id" name="product_id" value="{{ $product->id }}">
+                                        <input hidden id="quantity" name="quantity" value="1">
+                                        <input hidden id="total_price" name="total_price" value="{{ $product->price }}">
+                                    <a class="button button-primary button-shadow button-block" href="{{ route('order.store') }}" onclick="event.preventDefault();
+                                        this.closest('form').submit();">Order now</a>
+                                    </form>
                                 @endif
                             </div>
                         </div>
